@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HomeNew } from './pages/Home/HomeNew';
 import { Camera } from './pages/Camera/Camera';
@@ -9,6 +8,10 @@ import { SafeAccounts } from './pages/SafeAccounts/SafeAccounts';
 import { AddSafeAccount } from './pages/AddSafeAccount/AddSafeAccount';
 import { Transfer } from './pages/Transfer/Transfer';
 import { TransferSuccess } from './pages/TransferSuccess/TransferSuccess';
+import { FamilyManagement } from './pages/FamilyManagement/FamilyManagement';
+import { TransferLimit } from './pages/TransferLimit/TransferLimit';
+import { ElderlyProtection } from './pages/ElderlyProtection/ElderlyProtection';
+import { Settings } from './pages/Settings/Settings';
 import './styles/globalStyles.css';
 
 /**
@@ -32,6 +35,10 @@ function App() {
           <Route path="/add-safe-account" element={<AddSafeAccount />} />
           <Route path="/transfer" element={<Transfer />} />
           <Route path="/transfer-success" element={<TransferSuccess />} />
+          <Route path="/family-management" element={<FamilyManagement />} />
+          <Route path="/transfer-limit" element={<TransferLimit />} />
+          <Route path="/elderly-protection" element={<ElderlyProtection />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </div>
     </Router>

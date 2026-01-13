@@ -51,11 +51,6 @@ export const OCRConfirm: React.FC = () => {
     setEditingField(field);
   };
 
-  const handleSave = (field: string, value: string) => {
-    setData({ ...data, [field]: value });
-    setEditingField(null);
-  };
-
   const handleConfirm = () => {
     navigate('/security-check', { state: data });
   };

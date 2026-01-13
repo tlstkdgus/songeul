@@ -27,7 +27,7 @@ export const SecurityCheck: React.FC = () => {
 
   useEffect(() => {
     // 각 단계를 순차적으로 체크
-    const timers: NodeJS.Timeout[] = [];
+    const timers: ReturnType<typeof setTimeout>[] = [];
 
     checks.forEach((_, index) => {
       const timer = setTimeout(() => {

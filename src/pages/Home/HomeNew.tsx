@@ -45,7 +45,7 @@ export const HomeNew: React.FC = () => {
   const handleSettings = () => {
     vibrate(10);
     announce('설정 화면으로 이동합니다');
-    alert('설정 기능은 준비 중입니다');
+    navigate('/settings');
   };
 
   return (

@@ -1,0 +1,357 @@
+/* Family Management Screen Styles */
+
+.family-management {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  padding: 0;
+  background-color: var(--color-bg-default);
+}
+
+.family-management__header {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-lg);
+  background-color: var(--color-bg-paper);
+  border-bottom: 1px solid #e0e0e0;
+  gap: var(--spacing-md);
+}
+
+.family-management__back {
+  width: var(--touch-target-min);
+  height: var(--touch-target-min);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-primary);
+}
+
+.family-management__back:active {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+.family-management__title {
+  font-size: var(--font-size-heading2);
+  font-weight: 700;
+  margin: 0;
+  flex: 1;
+}
+
+.family-management__content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--spacing-lg);
+  padding-bottom: 100px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.family-management__section-title {
+  font-size: var(--font-size-body1);
+  font-weight: 700;
+  margin: var(--spacing-lg) 0 var(--spacing-md) 0;
+  color: var(--color-text-primary);
+}
+
+/* 가족 목록 */
+.family-management__list {
+  margin-bottom: var(--spacing-lg);
+}
+
+.family-management__empty {
+  text-align: center;
+  padding: var(--spacing-xl);
+  background-color: var(--color-bg-light);
+  border-radius: var(--radius-lg);
+}
+
+.family-management__empty p {
+  font-size: var(--font-size-body1);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+.family-management__empty-sub {
+  font-size: var(--font-size-body2);
+  color: var(--color-text-secondary);
+}
+
+.family-management__cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.family-management__card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-lg);
+  background-color: var(--color-bg-paper);
+  border: 2px solid transparent;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--transition-normal);
+  min-height: 80px;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.family-management__card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.15);
+}
+
+.family-management__card--selected {
+  border-color: var(--color-primary);
+  background-color: var(--color-bg-light);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.family-management__card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+.family-management__member-name {
+  font-size: var(--font-size-body1);
+  font-weight: 700;
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+.family-management__relationship {
+  display: inline-block;
+  padding: 4px 12px;
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+  border-radius: 16px;
+  font-size: var(--font-size-small);
+  font-weight: 600;
+}
+
+.family-management__contact {
+  font-size: var(--font-size-body2);
+  color: var(--color-text-secondary);
+  margin: 4px 0;
+}
+
+/* 권한 설정 */
+.family-management__permissions {
+  background-color: var(--color-bg-paper);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.family-management__permission-item {
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.family-management__permission-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.family-management__permission-label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  cursor: pointer;
+  font-size: var(--font-size-body1);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  min-height: var(--touch-target-min);
+}
+
+.family-management__permission-label input {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  min-width: 24px;
+}
+
+.family-management__permission-desc {
+  font-size: var(--font-size-body2);
+  color: var(--color-text-secondary);
+  margin: var(--spacing-sm) 0 0 32px;
+}
+
+.family-management__remove-btn {
+  width: 100%;
+  padding: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+  background-color: #ffebee;
+  color: var(--color-error);
+  border: 2px solid var(--color-error);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-body1);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  min-height: var(--button-height);
+}
+
+.family-management__remove-btn:active {
+  background-color: #f44336;
+  color: white;
+}
+
+/* 추가 버튼 */
+.family-management__add-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 64px;
+  height: 64px;
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+  border: none;
+  border-radius: 50%;
+  font-size: 32px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-normal);
+}
+
+.family-management__add-btn:hover {
+  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+  transform: scale(1.05);
+}
+
+.family-management__add-btn:active {
+  transform: scale(0.95);
+}
+
+/* 모달 */
+.family-management__modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-end;
+  z-index: 1000;
+  padding: 0;
+}
+
+.family-management__modal-content {
+  width: 100%;
+  max-width: 480px;
+  background-color: var(--color-bg-paper);
+  border-radius: 24px 24px 0 0;
+  padding: var(--spacing-lg);
+  max-height: 80vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.family-management__modal-title {
+  font-size: var(--font-size-heading2);
+  font-weight: 700;
+  margin: 0 0 var(--spacing-lg) 0;
+}
+
+.family-management__form-group {
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+}
+
+.family-management__label {
+  font-size: var(--font-size-body1);
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-primary);
+}
+
+.family-management__input,
+.family-management__select {
+  padding: var(--spacing-md);
+  font-size: var(--font-size-body1);
+  border: 2px solid #e0e0e0;
+  border-radius: var(--radius-lg);
+  font-family: inherit;
+  color: var(--color-text-primary);
+  min-height: var(--touch-target-min);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.family-management__input:focus,
+.family-management__select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+}
+
+.family-management__modal-buttons {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.family-management__btn-cancel,
+.family-management__btn-confirm {
+  flex: 1;
+  padding: var(--spacing-md);
+  font-size: var(--font-size-body1);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  min-height: var(--button-height);
+  font-family: inherit;
+}
+
+.family-management__btn-cancel {
+  background-color: #e0e0e0;
+  color: var(--color-text-primary);
+}
+
+.family-management__btn-cancel:active {
+  background-color: #bdbdbd;
+}
+
+.family-management__btn-confirm {
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+  font-weight: 700;
+}
+
+.family-management__btn-confirm:active {
+  background-color: var(--color-action-dark);
+}
+
+/* 반응형 */
+@media (max-width: 480px) {
+  .family-management__content {
+    padding: var(--spacing-md);
+  }
+
+  .family-management__add-btn {
+    bottom: 16px;
+    right: 16px;
+  }
+}

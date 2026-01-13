@@ -173,3 +173,104 @@ export interface AppError {
   userFriendlyMessage: string;
   severity: 'low' | 'medium' | 'high';
 }
+// Family/Guardian Types - 가족 등록 유연화
+export type FamilyRelationship = 'child' | 'spouse' | 'parent' | 'sibling' | 'grandchild' | 'extended' | 'caregiver' | 'legal_guardian';
+
+export interface FamilyMember {
+  id: string;
+  name: string;
+  relationship: FamilyRelationship;
+  phone: string;
+  email?: string;
+  profileImage?: string;
+  registeredAt: Date;
+  isActive: boolean;
+  // 권한 설정
+  permissions: FamilyPermissions;
+}
+
+export interface FamilyPermissions {
+  canApproveTransfer: boolean;      // 송금 승인 가능 여부
+  canSetLimit: boolean;              // 상한선 설정 가능 여부
+  canReceiveAlert: boolean;           // 송금 알림 수신 여부
+  canViewBalance: boolean;            // 잔액 조회 가능 여부
+  approvalRequired: boolean;          // 이 보호자의 승인이 필수인지
+}
+
+// Transfer Limit Types - 동적 송금 상한선
+export interface TransferLimitConfig {
+  id: string;
+  type: 'daily' | 'single' | 'monthly';
+  baseLimit: number;
+  byRelationship: Record<FamilyRelationship, number>;
+  byTimeOfDay: {
+    morning: number;      // 06:00 - 12:00
+    afternoon: number;    // 12:00 - 18:00
+    evening: number;      // 18:00 - 24:00
+    night: number;        // 00:00 - 06:00
+  };
+  lastUpdated: Date;
+}
+
+// Enhanced Security Types
+export interface BiometricAuth {
+  type: 'fingerprint' | 'face_recognition' | 'none';
+  isEnabled: boolean;
+  lastUsed?: Date;
+}
+
+export interface EnhancedSecurityCheck extends SecurityCheckResult {
+  biometricRequired: boolean;
+  guardianApprovalRequired: boolean;
+  guardianApprovalDeadline?: Date;
+  requiredApprovals: string[];      // guardian IDs
+  receivedApprovals: string[];      // guardian IDs who approved
+}
+
+// Elderly Care Types - 독거노인 보호
+export interface ElderlyProfile {
+  isElderlyAlone: boolean;
+  emergencyContact: FamilyMember;
+  emergencyContactBackup?: FamilyMember;
+  regularCheckInTime?: string;        // e.g., "14:00" (2 PM)
+  suspiciousActivityThreshold: number; // 의심 거래 기준액
+  dailyCheckInEnabled: boolean;
+  weeklyReportEnabled: boolean;
+  lastCheckIn?: Date;
+  notificationPreferences: {
+    smsAlert: boolean;
+    phoneCall: boolean;
+    familyNotification: boolean;
+  };
+}
+
+// Fraud Prevention Types
+export interface TransferApprovalRequest {
+  id: string;
+  transferData: TransferData;
+  requestedAt: Date;
+  expiresAt: Date;
+  status: 'pending' | 'approved' | 'rejected' | 'expired';
+  requiredApprovals: string[];       // guardian IDs
+  receivedApprovals: Map<string, {
+    guardianId: string;
+    approvedAt: Date;
+    method: 'app' | 'sms' | 'call';
+  }>;
+  reason?: string;                   // 거부 사유
+}
+
+// Enhanced Transfer Data
+export interface EnhancedTransferData extends TransferData {
+  transferLimitCheck: {
+    withinLimit: boolean;
+    remainingDailyLimit: number;
+    requiresApproval: boolean;
+  };
+  securityVerification: EnhancedSecurityCheck;
+  guardianApprovals?: TransferApprovalRequest;
+  biometricVerification?: {
+    required: boolean;
+    completed: boolean;
+  };
+}

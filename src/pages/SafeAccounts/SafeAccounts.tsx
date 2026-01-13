@@ -17,7 +17,7 @@ interface SafeAccount {
 export const SafeAccounts: React.FC = () => {
   const navigate = useNavigate();
 
-  const [accounts, setAccounts] = useState<SafeAccount[]>([
+  const [accounts] = useState<SafeAccount[]>([
     {
       id: '1',
       emoji: '👨',
