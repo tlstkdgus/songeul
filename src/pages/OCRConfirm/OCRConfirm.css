@@ -90,6 +90,12 @@
   transition: all 0.3s ease;
 }
 
+.ocr-confirm__card--recipient {
+  background: linear-gradient(135deg, var(--color-action) 0%, var(--color-action-dark) 100%);
+  border: none;
+  box-shadow: 0 6px 16px rgba(255, 215, 0, 0.2);
+}
+
 .ocr-confirm__card:focus-within {
   border-color: var(--color-primary);
   box-shadow: 0 6px 16px rgba(74, 144, 226, 0.2);
@@ -106,6 +112,10 @@
   font-size: var(--font-size-body2);
   color: var(--color-text-secondary);
   font-weight: 600;
+}
+
+.ocr-confirm__card--recipient .ocr-confirm__label {
+  color: rgba(0, 51, 102, 0.7);
 }
 
 .ocr-confirm__edit-btn {
@@ -130,6 +140,14 @@
   color: var(--color-text-primary);
   margin: 0;
   word-break: break-all;
+}
+
+.ocr-confirm__value--recipient {
+  color: var(--color-trust);
+}
+
+.ocr-confirm__card--recipient .ocr-confirm__value--recipient {
+  color: var(--color-trust);
 }
 
 .ocr-confirm__value--number {

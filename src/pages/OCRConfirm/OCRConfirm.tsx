@@ -6,6 +6,8 @@ interface OCRData {
   bank: string;
   accountNumber: string;
   amount: number;
+  recipientName?: string;
+  nickname?: string;
 }
 
 /**
@@ -22,6 +24,7 @@ export const OCRConfirm: React.FC = () => {
 
   const [data, setData] = useState<OCRData>(initialData);
   const [editingField, setEditingField] = useState<string | null>(null);
+  const recipientName = initialData.recipientName || initialData.nickname || '수취인';
 
   // TTS 음성 읽기
   const handleSpeak = () => {
@@ -87,6 +90,14 @@ export const OCRConfirm: React.FC = () => {
           스캔한 정보가 맞는지<br />
           확인해주세요
         </p>
+
+        {/* 받는 분 카드 */}
+        <div className="ocr-confirm__card ocr-confirm__card--recipient">
+          <span className="ocr-confirm__label">받는 분</span>
+          <p className="ocr-confirm__value ocr-confirm__value--recipient">
+            {recipientName}
+          </p>
+        </div>
 
         <div className="ocr-confirm__cards">
           {/* 은행명 카드 */}

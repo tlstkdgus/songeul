@@ -19,7 +19,9 @@ export const Camera: React.FC = () => {
         state: {
           bank: '신한은행',
           accountNumber: '110-123-456789',
-          amount: 100000
+          amount: 100000,
+          recipientName: '김싸피',
+          nickname: '월급'
         }
       });
     }, 1000);
@@ -36,7 +38,9 @@ export const Camera: React.FC = () => {
         state: {
           bank: '국민은행',
           accountNumber: '123-456-789012',
-          amount: 50000
+          amount: 50000,
+          recipientName: '이순신',
+          nickname: '용돈'
         }
       });
     }
@@ -57,7 +61,7 @@ export const Camera: React.FC = () => {
             />
           </svg>
         </button>
-        <h1 className="camera__title">고지서 촬영하기</h1>
+        <h1 className="camera__title">계좌번호 촬영하기</h1>
         <button
           className={`camera__flash ${flashEnabled ? 'active' : ''}`}
           onClick={() => setFlashEnabled(!flashEnabled)}
@@ -89,7 +93,7 @@ export const Camera: React.FC = () => {
             )}
           </div>
           <p className="camera__instruction">
-            고지서의 계좌번호가<br />
+           계좌번호가<br />
             초록색 틀 안에 들어오도록<br />
             맞춰주세요
           </p>

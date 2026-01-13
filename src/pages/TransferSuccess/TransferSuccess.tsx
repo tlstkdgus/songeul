@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './TransferSuccess.css';
 
@@ -9,9 +9,20 @@ export const TransferSuccess: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const transferData = location.state || {};
+  const [requiresApproval] = useState(false); // 일반 송금은 승인 불필요
 
   const formatAmount = (amount: number) => {
     return amount.toLocaleString('ko-KR');
+  };
+
+  const handleNext = () => {
+    if (requiresApproval) {
+      // 가족 승인이 필요한 경우 승인 요청 페이지로 이동
+      navigate('/approval-request', { state: transferData });
+    } else {
+      // 일반적인 경우 홈으로 이동
+      navigate('/');
+    }
   };
 
   return (
@@ -51,7 +62,7 @@ export const TransferSuccess: React.FC = () => {
           <div className="transfer-success__detail-item">
             <span className="transfer-success__detail-label">받는 분</span>
             <span className="transfer-success__detail-value">
-              {transferData.recipientName || transferData.nickname}
+              {transferData?.recipientName || transferData?.nickname || transferData?.realName || '김싸피'}
             </span>
           </div>
           <div className="transfer-success__detail-item">
@@ -78,9 +89,9 @@ export const TransferSuccess: React.FC = () => {
       <div className="transfer-success__actions">
         <button
           className="transfer-success__btn"
-          onClick={() => navigate('/')}
+          onClick={handleNext}
         >
-          홈으로 가기
+          {requiresApproval ? '가족 승인 요청하기' : '홈으로 가기'}
         </button>
       </div>
     </div>

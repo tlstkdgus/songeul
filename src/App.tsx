@@ -8,6 +8,7 @@ import { SafeAccounts } from './pages/SafeAccounts/SafeAccounts';
 import { AddSafeAccount } from './pages/AddSafeAccount/AddSafeAccount';
 import { Transfer } from './pages/Transfer/Transfer';
 import { TransferSuccess } from './pages/TransferSuccess/TransferSuccess';
+import { ApprovalRequest } from './pages/ApprovalRequest/ApprovalRequest';
 import { FamilyManagement } from './pages/FamilyManagement/FamilyManagement';
 import { TransferLimit } from './pages/TransferLimit/TransferLimit';
 import { ElderlyProtection } from './pages/ElderlyProtection/ElderlyProtection';
@@ -35,6 +36,7 @@ function App() {
           <Route path="/add-safe-account" element={<AddSafeAccount />} />
           <Route path="/transfer" element={<Transfer />} />
           <Route path="/transfer-success" element={<TransferSuccess />} />
+          <Route path="/approval-request" element={<ApprovalRequest />} />
           <Route path="/family-management" element={<FamilyManagement />} />
           <Route path="/transfer-limit" element={<TransferLimit />} />
           <Route path="/elderly-protection" element={<ElderlyProtection />} />

@@ -33,15 +33,14 @@ export const FraudAlert: React.FC = () => {
   };
 
   const handleRequestApproval = () => {
-    alert('가족에게 승인 요청을 보냈습니다');
-    navigate('/');
+    // 가족에게 승인 요청 페이지로 이동
+    navigate('/approval-request', { state: transferData });
   };
 
   const handleProceed = () => {
     if (canProceed) {
-      if (confirm('정말로 송금하시겠습니까?\n가족에게 먼저 확인해보시는 것이 좋습니다.')) {
-        navigate('/transfer-success', { state: transferData });
-      }
+      // 사용자가 확인 후 송금 진행 - TransferSuccess로 이동
+      navigate('/transfer-success', { state: transferData });
     }
   };
 
@@ -62,8 +61,8 @@ export const FraudAlert: React.FC = () => {
 
       <main className="fraud-alert__content">
         <h1 className="fraud-alert__title">
-          ⚠️ 잠깐!<br />
-          의심스러운 송금입니다
+          ⚠️ 주의!<br />
+          의심스러운 송금입니다.
         </h1>
 
         <div className="fraud-alert__reasons">
@@ -103,7 +102,7 @@ export const FraudAlert: React.FC = () => {
 
         <div className="fraud-alert__warning-box">
           <p className="fraud-alert__warning-text">
-            보이스피싱일 가능성이 있습니다<br />
+            의심스러운 송금입니다<br />
             <strong>가족에게 먼저 확인해보세요</strong>
           </p>
         </div>
@@ -134,6 +133,8 @@ export const FraudAlert: React.FC = () => {
             </svg>
             가족에게 승인 요청하기
           </button>
+
+          
 
           <button
             className="fraud-alert__btn fraud-alert__btn--cancel"

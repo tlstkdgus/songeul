@@ -1,0 +1,273 @@
+/**
+ * Approval Request Screen Styles
+ */
+
+.approval-request {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--color-success) 0%, var(--color-success-light) 100%);
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.approval-request__animation {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0 20px;
+}
+
+.approval-request__icon {
+  width: 96px;
+  height: 96px;
+  color: white;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.approval-request__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.approval-request__title {
+  font-size: var(--font-size-heading1);
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.approval-request__message {
+  font-size: var(--font-size-body1);
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  text-align: center;
+}
+
+/* 상세 정보 */
+.approval-request__details {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.approval-request__detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  color: white;
+  font-size: var(--font-size-body1);
+  font-weight: 600;
+}
+
+.approval-request__detail-item:not(:last-child) {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.approval-request__detail-label {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+}
+
+.approval-request__detail-value {
+  color: white;
+  font-weight: 700;
+  text-align: right;
+}
+
+.approval-request__detail-value--amount {
+  font-size: var(--font-size-heading2);
+  color: #FFE082;
+}
+
+/* 대기 정보 */
+.approval-request__waiting {
+  background: var(--color-bg-paper);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.approval-request__waiting-info {
+  text-align: center;
+}
+
+.approval-request__waiting-label {
+  font-size: var(--font-size-body2);
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  margin: 0 0 12px 0;
+}
+
+.approval-request__timer {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--color-success);
+  margin: 0 0 12px 0;
+  font-family: 'Courier New', monospace;
+}
+
+.approval-request__waiting-description {
+  font-size: var(--font-size-body2);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* 가족 목록 */
+.approval-request__family-list {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 24px;
+}
+
+.approval-request__family-title {
+  font-size: var(--font-size-body1);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 16px 0;
+}
+
+.approval-request__family-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: var(--color-bg-default);
+  border-radius: 12px;
+  min-height: 72px;
+}
+
+.approval-request__family-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--color-success);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.approval-request__family-icon svg {
+  width: 28px;
+  height: 28px;
+  color: white;
+}
+
+.approval-request__family-info {
+  flex: 1;
+}
+
+.approval-request__family-name {
+  font-size: var(--font-size-body1);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 4px 0;
+}
+
+.approval-request__family-status {
+  font-size: var(--font-size-body2);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.approval-request__family-status-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--color-success);
+  animation: spin 2s linear infinite;
+}
+
+.approval-request__family-status-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 액션 버튼 */
+.approval-request__actions {
+  display: flex;
+  gap: 12px;
+  padding-top: 24px;
+}
+
+.approval-request__btn {
+  flex: 1;
+  padding: var(--spacing-lg);
+  border: none;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-body1);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  min-height: var(--button-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+}
+
+.approval-request__btn--primary {
+  background: var(--color-success);
+  color: white;
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+}
+
+.approval-request__btn--primary:active {
+  transform: scale(0.98);
+  background: #1b5e20;
+  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.2);
+}
+
+.approval-request__btn--secondary {
+  background: white;
+  color: var(--color-success);
+  border: 2px solid var(--color-success);
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.15);
+}
+
+.approval-request__btn--secondary:active {
+  transform: scale(0.98);
+  background: #F1F8E9;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .approval-request__icon {
+    animation: none;
+  }
+
+  .approval-request__family-status-icon {
+    animation: none;
+  }
+}

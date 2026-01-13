@@ -207,6 +207,23 @@
   background: #F5F5F5;
 }
 
+.fraud-alert__btn--proceed {
+  background: var(--color-action);
+  color: var(--color-trust);
+  border-color: var(--color-action);
+  box-shadow: 0 8px 24px rgba(255, 215, 0, 0.4);
+}
+
+.fraud-alert__btn--proceed:active:not(:disabled) {
+  transform: scale(0.98);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+.fraud-alert__btn--proceed:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .fraud-alert__dangerous {
   margin-top: 24px;
   padding-top: 24px;

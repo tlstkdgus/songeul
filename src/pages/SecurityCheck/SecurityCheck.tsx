@@ -81,6 +81,24 @@ export const SecurityCheck: React.FC = () => {
       </header>
 
       <main className="security-check__content">
+        {/* 송금 정보 표시 */}
+        {transferData && (
+          <div className="security-check__transfer-info">
+            <div className="security-check__info-item">
+              <span className="security-check__info-label">받는 분</span>
+              <span className="security-check__info-value">
+                {transferData?.recipientName || transferData?.nickname || transferData?.realName || '김싸피'}
+              </span>
+            </div>
+            <div className="security-check__info-item">
+              <span className="security-check__info-label">금액</span>
+              <span className="security-check__info-value">
+                {transferData.amount?.toLocaleString('ko-KR')}원
+              </span>
+            </div>
+          </div>
+        )}
+
         <div className="security-check__progress">
           <div
             className="security-check__progress-bar"
