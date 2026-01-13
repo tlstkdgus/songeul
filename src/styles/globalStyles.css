@@ -113,6 +113,20 @@ body {
   position: relative;
 }
 
+/* Scrollbar 숨기기 (동작 유지) */
+html,
+body,
+#root {
+  scrollbar-width: none;      /* Firefox */
+  -ms-overflow-style: none;   /* IE, Edge Legacy */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+#root::-webkit-scrollbar {
+  display: none;              /* WebKit */
+}
+
 /* 접근성: Focus Visible */
 *:focus-visible {
   outline: 3px solid var(--color-primary);
