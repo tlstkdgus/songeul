@@ -3,8 +3,8 @@
  */
 
 .ai-assistant {
-  position: fixed;
-  bottom: 32px;
+  position: absolute;
+  bottom: 200px;
   right: 32px;
   width: 80px;
   height: 80px;
@@ -22,6 +22,13 @@
   transition: all var(--transition-normal);
   z-index: 1000;
   -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 520px) {
+  .ai-assistant {
+    right: 16px;
+    bottom: 120px;
+  }
 }
 
 .ai-assistant:hover {

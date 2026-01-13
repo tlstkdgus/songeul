@@ -214,7 +214,7 @@
 
 /* 추가 버튼 */
 .family-management__add-btn {
-  position: fixed;
+  position: absolute;
   bottom: 20px;
   right: 20px;
   width: 64px;
@@ -230,6 +230,13 @@
   align-items: center;
   justify-content: center;
   transition: all var(--transition-normal);
+}
+
+@media (max-width: 520px) {
+  .family-management__add-btn {
+    right: 16px;
+    bottom: 16px;
+  }
 }
 
 .family-management__add-btn:hover {
@@ -251,6 +258,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: flex-end;
+  justify-content: center;
   z-index: 1000;
   padding: 0;
 }
@@ -264,6 +272,7 @@
   max-height: 80vh;
   overflow-y: auto;
   box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .family-management__modal-title {

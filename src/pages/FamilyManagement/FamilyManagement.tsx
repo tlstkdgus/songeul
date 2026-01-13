@@ -263,7 +263,7 @@ export const FamilyManagement: React.FC = () => {
         onClick={() => setShowAddModal(true)}
         aria-label="가족 등록"
       >
-        + 가족 등록
+        +
       </button>
 
       {/* 가족 추가 모달 */}
