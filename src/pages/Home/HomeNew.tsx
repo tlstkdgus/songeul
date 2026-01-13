@@ -49,7 +49,7 @@ export const HomeNew: React.FC = () => {
   };
 
   return (
-    <div className="home">
+    <div className="home" style={{display:"flex", flexDirection:"column", alignItems:"space-between"}}>
       <main className="home__content">
         {/* 잔액 카드 */}
         <section className="home__section">
@@ -132,10 +132,10 @@ export const HomeNew: React.FC = () => {
             </button>
           </div>
         </section>
+        {/* 하단 네비게이션 */}
+      
       </main>
-
-      {/* 하단 네비게이션 */}
-      <nav className="home__nav" aria-label="주요 탐색" style={{borderBottomLeftRadius: "48px", borderBottomRightRadius: "16px"}}>
+      <nav className="home__nav" aria-label="주요 탐색" style={{borderBottomLeftRadius: "48px", borderBottomRightRadius: "48px"}}>
         <button className="home__nav-btn" onClick={handleHome} aria-label="홈" >
           <div className="home__nav-icon">
             <svg viewBox="0 0 24 24" fill="none">
@@ -172,6 +172,7 @@ export const HomeNew: React.FC = () => {
           <span className="home__nav-label">설정</span>
         </button>
       </nav>
+      
 
       {/* AI 비서는 플로팅 버튼으로 유지 */}
       <AIAssistant />
