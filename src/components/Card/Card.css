@@ -1,0 +1,113 @@
+/**
+ * Card Component Styles
+ * Material Design 3 Elevation
+ */
+
+.card {
+  background-color: var(--color-bg-paper);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-normal);
+  width: 100%;
+}
+
+/* Variant Styles */
+.card--elevated {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08),
+              0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.card--elevated:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1),
+              0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.card--outlined {
+  border: 2px solid var(--color-text-secondary);
+  box-shadow: none;
+}
+
+.card--filled {
+  background-color: #F5F5F5;
+  box-shadow: none;
+}
+
+/* Padding Variants */
+.card--padding-none {
+  padding: 0;
+}
+
+.card--padding-small {
+  padding: 16px;
+}
+
+.card--padding-medium {
+  padding: 24px;
+}
+
+.card--padding-large {
+  padding: 32px;
+}
+
+/* Clickable State */
+.card--clickable {
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.card--clickable:hover {
+  transform: translateY(-4px);
+}
+
+.card--clickable:active {
+  transform: translateY(-2px);
+}
+
+.card--clickable:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 4px;
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .card {
+    border: 2px solid var(--color-text-primary);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+
+  .card--clickable:hover,
+  .card--clickable:active {
+    transform: none;
+  }
+}
+
+/* Touch Feedback */
+@media (hover: none) {
+  .card--clickable:active {
+    opacity: 0.9;
+    transform: scale(0.98);
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .card {
+    background-color: var(--color-bg-paper);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .card--elevated {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3),
+                0 4px 16px rgba(0, 0, 0, 0.25);
+  }
+
+  .card--filled {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+}

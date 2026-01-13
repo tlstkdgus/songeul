@@ -1,0 +1,139 @@
+/**
+ * Text Component Styles
+ * Large, readable typography for senior users
+ */
+
+.text {
+  margin: 0;
+  color: var(--color-text-primary);
+  line-height: var(--line-height);
+}
+
+/* Variant Styles */
+.text--heading1 {
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.text--heading2 {
+  font-size: 28px;
+  line-height: 1.2;
+}
+
+.text--heading3 {
+  font-size: 24px;
+  line-height: 1.3;
+}
+
+.text--body1 {
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.text--body2 {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.text--caption {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+/* Font Weight */
+.text--weight-regular {
+  font-weight: 400;
+}
+
+.text--weight-medium {
+  font-weight: 500;
+}
+
+.text--weight-semibold {
+  font-weight: 600;
+}
+
+.text--weight-bold {
+  font-weight: 700;
+}
+
+/* Color Variants */
+.text--color-primary {
+  color: var(--color-primary);
+}
+
+.text--color-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text--color-success {
+  color: var(--color-success);
+}
+
+.text--color-error {
+  color: var(--color-error);
+}
+
+.text--color-warning {
+  color: var(--color-warning);
+}
+
+/* Text Alignment */
+.text--align-left {
+  text-align: left;
+}
+
+.text--align-center {
+  text-align: center;
+}
+
+.text--align-right {
+  text-align: right;
+}
+
+/* Ensure readability */
+.text {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Selection styling */
+.text::selection {
+  background-color: rgba(74, 144, 226, 0.3);
+  color: var(--color-text-primary);
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .text {
+    font-weight: 500;
+  }
+
+  .text--weight-regular {
+    font-weight: 500;
+  }
+
+  .text--weight-medium {
+    font-weight: 600;
+  }
+
+  .text--weight-semibold {
+    font-weight: 700;
+  }
+
+  .text--weight-bold {
+    font-weight: 800;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .text {
+    color: var(--color-text-primary);
+  }
+
+  .text::selection {
+    background-color: rgba(74, 144, 226, 0.5);
+  }
+}

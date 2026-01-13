@@ -1,0 +1,273 @@
+/**
+ * Home Screen Styles - 고령자 친화 색상 적용
+ */
+
+.home {
+  min-height: 100vh;
+  background-color: var(--color-trust);
+  padding-bottom: 120px;
+  animation: pageTransition 0.5s ease;
+}
+
+@keyframes pageTransition {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home__header {
+  padding: 24px 16px 16px;
+}
+
+.home__content {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.home__section {
+  width: 100%;
+}
+
+/* 잔액 카드 - 흰색 배경 */
+.home__balance-card {
+  background: white;
+  border-radius: 24px;
+  padding: 32px 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.home__balance-greeting {
+  font-size: var(--font-size-body1);
+  color: var(--color-text-primary);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.home__balance-amount {
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--color-trust);
+  font-family: 'Courier New', monospace;
+}
+
+/* 액션 버튼들 */
+.home__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.home__action-btn {
+  width: 100%;
+  height: 88px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 32px;
+  font-size: var(--font-size-heading2);
+  font-weight: 700;
+  transition: all 0.3s ease;
+  border: none;
+  position: relative;
+}
+
+/* 돈 보내기 버튼 - 노란색 */
+.home__action-btn--primary {
+  background: var(--color-action);
+  color: var(--color-trust);
+  box-shadow: 0 8px 24px rgba(255, 215, 0, 0.5);
+}
+
+.home__action-btn--primary:active {
+  transform: scale(0.98);
+  background: var(--color-action-dark);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+}
+
+.home__action-btn--primary .home__action-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--color-trust);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home__action-btn--primary .home__action-icon svg {
+  width: 32px;
+  height: 32px;
+  color: var(--color-action);
+}
+
+/* 사진 찍어 보내기 버튼 - 초록색 */
+.home__action-btn--camera {
+  background: var(--color-success);
+  color: white;
+  box-shadow: 0 8px 24px rgba(46, 125, 50, 0.5);
+}
+
+.home__action-btn--camera:active {
+  transform: scale(0.98);
+  background: var(--color-success-light);
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.4);
+}
+
+.home__action-btn--camera .home__action-icon {
+  width: 56px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home__action-btn--camera .home__action-icon svg {
+  width: 32px;
+  height: 32px;
+  color: white;
+}
+
+/* 안심 계좌 버튼 - 흰색 */
+.home__action-btn--safe {
+  background: white;
+  color: var(--color-trust);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);
+  border: 3px solid rgba(255, 255, 255, 0.5);
+}
+
+.home__action-btn--safe:active {
+  transform: scale(0.98);
+  background: #F5F5F5;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+.home__action-btn--safe .home__action-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--color-success);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home__action-btn--safe .home__action-icon svg {
+  width: 32px;
+  height: 32px;
+  color: white;
+}
+
+/* 추천 배지 */
+.home__badge {
+  position: absolute;
+  top: -12px;
+  right: 32px;
+  background: var(--color-action);
+  color: var(--color-trust);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+}
+
+/* 하단 네비게이션 */
+.home__nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--color-trust);
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  padding: 16px 0 24px;
+  display: flex;
+  justify-content: space-around;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.home__nav-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  background: transparent;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.home__nav-btn:active {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(0.95);
+}
+
+.home__nav-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home__nav-icon svg {
+  width: 28px;
+  height: 28px;
+  color: white;
+}
+
+.home__nav-label {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Stagger animation */
+.home__action-btn {
+  animation: slideUp 0.5s ease-out backwards;
+}
+
+.home__action-btn:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.home__action-btn:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.home__action-btn:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .home__action-btn {
+    animation: none;
+  }
+}

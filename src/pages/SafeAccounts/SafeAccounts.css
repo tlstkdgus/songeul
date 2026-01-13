@@ -1,0 +1,235 @@
+/**
+ * Safe Account List Screen Styles
+ */
+
+.safe-accounts {
+  min-height: 100vh;
+  background-color: var(--color-bg-default);
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.safe-accounts__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: var(--color-bg-paper);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.safe-accounts__back {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--color-bg-default);
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.safe-accounts__back:active {
+  transform: scale(0.95);
+  background: var(--color-primary);
+  color: white;
+}
+
+.safe-accounts__back svg {
+  width: 32px;
+  height: 32px;
+}
+
+.safe-accounts__title {
+  flex: 1;
+  text-align: center;
+  font-size: var(--font-size-heading2);
+  font-weight: 700;
+  margin: 0;
+  padding: 0 16px;
+}
+
+.safe-accounts__spacer {
+  width: 56px;
+}
+
+.safe-accounts__content {
+  flex: 1;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.safe-accounts__instruction {
+  text-align: center;
+  font-size: var(--font-size-heading2);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.safe-accounts__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.safe-accounts__item {
+  animation: slideUp 0.4s ease-out backwards;
+}
+
+.safe-accounts__item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.safe-accounts__item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.safe-accounts__item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.safe-accounts__card {
+  width: 100%;
+  background: var(--color-bg-paper);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.safe-accounts__card:active {
+  transform: scale(0.98);
+  box-shadow: 0 6px 16px rgba(255, 215, 0, 0.3);
+  border-color: var(--color-action);
+}
+
+.safe-accounts__card-emoji {
+  width: 72px;
+  height: 72px;
+  min-width: 72px;
+  background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.15);
+}
+
+.safe-accounts__card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.safe-accounts__card-nickname {
+  font-size: var(--font-size-heading2);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.safe-accounts__card-info {
+  font-size: var(--font-size-body2);
+  color: var(--color-text-secondary);
+  margin: 0;
+  font-weight: 600;
+}
+
+.safe-accounts__card-number {
+  font-size: var(--font-size-body2);
+  color: var(--color-text-secondary);
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 1px;
+}
+
+.safe-accounts__card-arrow {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  color: var(--color-text-secondary);
+  transition: transform 0.3s ease;
+}
+
+.safe-accounts__card:active .safe-accounts__card-arrow {
+  transform: translateX(4px);
+}
+
+.safe-accounts__add-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 80px;
+  background: var(--color-action);
+  color: var(--color-trust);
+  border-radius: 20px;
+  font-size: var(--font-size-body1);
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(255, 215, 0, 0.3);
+  border: 3px solid var(--color-trust);
+  transition: all 0.3s ease;
+  margin-top: 8px;
+}
+
+.safe-accounts__add-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+  background: var(--color-action-dark);
+}
+
+.safe-accounts__add-btn svg {
+  width: 36px;
+  height: 36px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .safe-accounts__item {
+    animation: none;
+  }
+
+  .safe-accounts__card,
+  .safe-accounts__add-btn {
+    transition: none;
+  }
+}
+
+/* Tablet and Desktop */
+@media (min-width: 481px) {
+  .safe-accounts__content {
+    padding: 32px 24px;
+  }
+}

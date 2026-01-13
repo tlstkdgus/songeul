@@ -1,0 +1,74 @@
+/**
+ * ActionButton Component Styles
+ */
+
+.action-button {
+  min-height: 100px !important;
+  padding: 20px 24px !important;
+}
+
+.action-button__content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  text-align: left;
+}
+
+.action-button__icon {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+}
+
+.action-button__icon svg {
+  width: 36px;
+  height: 36px;
+}
+
+.action-button__text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.action-button__label {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.action-button__description {
+  font-size: 16px;
+  font-weight: 400;
+  opacity: 0.9;
+  line-height: 1.3;
+}
+
+/* Animation on hover */
+.action-button:hover .action-button__icon {
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Transition */
+.action-button__icon {
+  transition: all var(--transition-normal);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .action-button__icon {
+    transition: none;
+  }
+
+  .action-button:hover .action-button__icon {
+    transform: none;
+  }
+}

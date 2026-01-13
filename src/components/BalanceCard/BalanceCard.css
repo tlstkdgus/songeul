@@ -1,0 +1,133 @@
+/**
+ * BalanceCard Component Styles
+ */
+
+.balance-card {
+  background: #FFFFFF;
+  color: var(--color-trust);
+  position: relative;
+  overflow: visible;
+}
+
+.balance-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.balance-card__greeting {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.balance-card__greeting .text {
+  color: var(--color-trust);
+}
+
+.balance-card__greeting .text--color-secondary {
+  color: var(--color-text-secondary);
+}
+
+.balance-card__greeting .text {
+  font-size: 2rem;
+}
+
+.balance-card__balance {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px 0;
+}
+
+.balance-card__balance .text--caption {
+  color: var(--color-text-secondary);
+}
+
+.balance-card__amount {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.balance-card__amount .text {
+  color: var(--color-trust);
+  font-size: 3rem;
+}
+
+.balance-card__tts-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background-color: var(--color-action);
+  color: var(--color-trust);
+  border: 2px solid var(--color-trust);
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  align-self: flex-start;
+}
+
+.balance-card__tts-button:hover {
+  background-color: var(--color-action-dark);
+  transform: translateY(-2px);
+}
+
+.balance-card__tts-button:active {
+  transform: translateY(0);
+  background-color: var(--color-action-dark);
+}
+
+.balance-card__tts-button:focus-visible {
+  outline: 3px solid var(--color-success);
+  outline-offset: 4px;
+}
+
+.balance-card__tts-button svg {
+  flex-shrink: 0;
+}
+
+.balance-card__tts-text {
+  line-height: 1;
+}
+
+/* Animation */
+.balance-card {
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .balance-card {
+    animation: none;
+  }
+
+  .balance-card__tts-button:hover {
+    transform: none;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .balance-card {
+    border: 3px solid var(--color-trust);
+  }
+
+  .balance-card__tts-button {
+    border-width: 3px;
+  }
+}

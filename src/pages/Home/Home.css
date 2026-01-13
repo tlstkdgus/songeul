@@ -1,0 +1,86 @@
+/**
+ * Home Screen Styles
+ */
+
+.home {
+  min-height: 100vh;
+  background-color: var(--color-bg-default);
+  padding-bottom: 120px; /* Space for AI Assistant */
+}
+
+.home__header {
+  /* Screen reader only header */
+}
+
+.home__content {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.home__section {
+  width: 100%;
+}
+
+.home__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Stagger animation for action buttons */
+.home__actions > * {
+  animation: slideUp 0.5s ease-out backwards;
+}
+
+.home__actions > *:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.home__actions > *:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.home__actions > *:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .home__actions > * {
+    animation: none;
+  }
+}
+
+/* Tablet and Desktop */
+@media (min-width: 768px) {
+  .home__content {
+    padding: var(--spacing-xl);
+  }
+}
+
+/* Mobile Optimization */
+@media (max-width: 480px) {
+  .home__content {
+    padding: 16px;
+    gap: 24px;
+  }
+
+  .home__actions {
+    gap: 16px;
+  }
+}

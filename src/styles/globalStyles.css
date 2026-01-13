@@ -1,0 +1,304 @@
+/**
+ * Global Styles for Senior Banking App
+ * 접근성 최적화 및 시니어 사용자 UX 개선
+ */
+
+/* CSS Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Root Variables */
+:root {
+  /* 고령자 친화 색상 팔레트 */
+  --color-action: #FFD700;        /* Vibrant Yellow - 핵심 액션 (돈 보내기) */
+  --color-action-dark: #FFC700;   /* 액션 버튼 눌렀을 때 */
+  --color-trust: #003366;          /* Deep Navy - 신뢰/안정 */
+  --color-trust-light: #004A99;    /* 밝은 네이비 */
+  --color-success: #2E7D32;        /* Safety Green - 성공/확인 */
+  --color-success-light: #4CAF50;  /* 밝은 초록 */
+  --color-error: #D32F2F;          /* Alert Red - 위험/경고 */
+  --color-error-light: #F44336;    /* 밝은 빨강 */
+  --color-ai: #FF9800;             /* Soft Orange - AI 비서 */
+  --color-ai-dark: #F57C00;        /* AI 비서 어두운 색 */
+
+  /* 기본 색상 매핑 */
+  --color-primary: var(--color-action);
+  --color-text-primary: var(--color-trust);
+  --color-text-secondary: #616161;
+  --color-bg-default: #FAFAFA;
+  --color-bg-paper: #FFFFFF;
+  --color-bg-light: #FFF9E6;  /* 연한 노란 배경 */
+
+  /* Typography - 고령자 친화 큰 글씨 (28sp+ for mobile) */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
+  --font-size-heading1: 36px;  /* 28sp+ */
+  --font-size-heading2: 32px;  /* 28sp */
+  --font-size-body1: 24px;     /* 큰 본문 */
+  --font-size-body2: 20px;     /* 일반 본문 */
+  --font-size-small: 18px;     /* 작은 텍스트 */
+  --line-height: 1.6;
+
+  /* Spacing */
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Border Radius */
+  --radius-lg: 16px;
+
+  /* Transitions */
+  --transition-normal: 300ms ease-in-out;
+
+  /* Touch Targets */
+  --touch-target-min: 48px;
+  --button-height: 64px;
+}
+
+/* Base Styles */
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-body1);
+  line-height: var(--line-height);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-default);
+  min-height: 100vh;
+  overflow-x: hidden;
+  width: 480px;
+  max-width: 480px;
+  height: 932px;
+  max-height: 932px;
+  border-radius: 48px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+/* 접근성: Focus Visible */
+*:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* 접근성: Focus 시 스킵 가능한 요소 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Typography Styles */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.5em;
+}
+
+h1 {
+  font-size: var(--font-size-heading1);
+}
+
+h2 {
+  font-size: var(--font-size-heading2);
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+/* Link Styles */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: opacity var(--transition-normal);
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+a:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Button Reset */
+button {
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Image Optimization */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Container - 모바일 최적화 */
+.container {
+  width: 100%;
+  max-width: 480px;  /* 모바일 사이즈 */
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+}
+
+/* 모바일 우선 레이아웃 */
+@media (max-width: 480px) {
+  .container {
+    padding: 16px;
+  }
+
+  body {
+    font-size: var(--font-size-body2);
+  }
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.text-large {
+  font-size: var(--font-size-heading2);
+  font-weight: 700;
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-success {
+  color: var(--color-success);
+}
+
+.text-error {
+  color: var(--color-error);
+}
+
+.text-warning {
+  color: var(--color-warning);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-normal);
+}
+
+.slide-up {
+  animation: slideUp var(--transition-normal);
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  :root {
+    --color-text-primary: #000000;
+    --color-bg-paper: #FFFFFF;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark Mode Support (optional) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-default: #121212;
+    --color-bg-paper: #1E1E1E;
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #B0B0B0;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  button,
+  .no-print {
+    display: none;
+  }
+}
