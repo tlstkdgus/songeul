@@ -135,7 +135,7 @@ export const HomeNew: React.FC = () => {
       </main>
 
       {/* 하단 네비게이션 */}
-      <nav className="home__nav">
+      <nav className="home__nav" aria-label="주요 탐색" style={{borderBottomLeftRadius: "48px", borderBottomRightRadius: "16px"}}>
         <button className="home__nav-btn" onClick={handleHome} aria-label="홈" >
           <div className="home__nav-icon">
             <svg viewBox="0 0 24 24" fill="none">
