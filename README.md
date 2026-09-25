@@ -1,289 +1,85 @@
-# 시니어 뱅킹 앱 (Senior Banking App)
+# 손글 (SonGeul) — 시니어 뱅킹 프론트엔드 프로토타입
 
-시니어 사용자(65세 이상)를 위한 접근성 최적화 뱅킹 애플리케이션입니다.
+65세 이상 사용자를 위한 모바일 송금 흐름을 클릭해 볼 수 있게 만든 **React 프론트엔드 프로토타입**입니다.
+2025 KIITI 동계 학술대회 아이디어·앱 콘테스트 출품작 '손글'의 화면 흐름과 접근성 설계를 코드로 옮겼습니다.
 
-## 주요 특징
+> **프로토타입 범위**
+> 백엔드와 실제 OCR 연동은 없습니다. 사진 인식 결과, 보안 검사 결과, 가족 승인은 **목업 데이터와 타이머로 흐름만** 보여 줍니다.
+> 설정 화면(가족 관리·송금 한도·고령자 보호)의 값은 브라우저 안의 로컬 상태로만 유지되고 서버에 저장되지 않습니다.
+> 출품작에서 설계한 OCR 앙상블(CLOVA OCR + Google Vision + 파인튜닝 모델 가중 투표)과 이상 거래 감지는 이 저장소에 구현돼 있지 않습니다.
 
-### 접근성 우선 설계
-- **WCAG AAA 준수**: 모든 텍스트와 배경의 대비율이 최소 7:1 이상
-- **큰 터치 영역**: 모든 버튼이 최소 48dp x 48dp 이상
-- **읽기 쉬운 타이포그래피**: 18-32sp의 큰 글씨 크기
-- **음성 피드백(TTS)**: 잔액과 중요 정보를 음성으로 읽어줌
-- **햅틱 피드백**: 모든 인터랙션에 촉각 피드백 제공
+## 송금 흐름
 
-### 핵심 기능
-1. **홈 화면**
-   - 대화형 잔액 카드 (TTS 지원)
-   - 3개의 메인 액션 버튼 (송금, 사진 송금, 안심 계좌)
-   - AI 비서 플로팅 버튼
+```
+홈 → 사진 찍어 보내기(/camera) → 인식 결과 확인(/ocr-confirm) → 보안 검사(/security-check)
+   → 사기 경고(/fraud-alert) 또는 송금 완료(/transfer-success) → 가족 승인 대기(/approval-request)
+```
 
-2. **사진 송금 (OCR)**
-   - 계좌번호 자동 인식
-   - 실시간 OCR 처리
-   - 음성 안내
+| 화면 | 실제로 동작하는 것 | 목업인 것 |
+|---|---|---|
+| 촬영 `/camera` | 촬영·갤러리 버튼과 화면 이동 | 카메라 캡처(getUserMedia 없음), 인식 결과는 예시 데이터로 고정 |
+| 확인 `/ocr-confirm` | 은행·계좌·금액 수정, 화면 진입 0.5초 뒤 **음성으로 읽어 줌**(Web Speech API, ko-KR, 0.9배속) | 인식 결과 값 |
+| 보안 검사 `/security-check` | 계좌 확인 → 사기 DB → 거래 패턴 3단계 진행 연출 | 검사 결과(무작위로 경고/완료 분기) |
+| 가족 승인 `/approval-request` | 5분 카운트다운 화면 | 실제 승인 요청·응답 |
+| 설정 `/settings` 이하 | 가족(관계별 권한)·송금 한도(기본·관계별·시간대별)·고령자 보호 설정 입력 | 저장·알림 발송 |
 
-3. **보안 검증**
-   - 3단계 보안 체크 (계좌 유효성, 사기 DB, 이상 거래 분석)
-   - 사기 의심 시 전면 경고
-   - 가족 확인 요청 기능
+그 밖의 라우트: `/transfer`(금액 입력), `/safe-accounts`, `/add-safe-account`, `/family-management`, `/transfer-limit`, `/elderly-protection` — 총 14개 (`src/App.tsx`).
 
-4. **안심 계좌 관리**
-   - 이모지와 별명으로 계좌 관리
-   - 원클릭 송금
+## 접근성 구현
 
-5. **가족 등록 및 보호자 관리** ⭐ NEW
-   - 여러 명의 가족/보호자 등록 (자녀, 배우자, 부모, 형제자매 등)
-   - 관계별 세부 권한 설정
-   - 송금 승인 권한, 한도 설정, 알림 수신 등 선택 가능
-   - 보호자 업데이트 및 제거 기능
+- **음성(TTS)**: `useTTS` 훅과 `src/utils/accessibility.ts`의 speak/stop (Web Speech API)
+- **햅틱**: `useHaptic` 훅 — 성공·오류·경고별 `navigator.vibrate` 패턴. `navigator.vibrate`를 지원하지 않는 브라우저(iOS Safari 등)에서는 동작하지 않습니다.
+- **키보드·스크린리더**: 본문 건너뛰기 링크, 포커스 트랩(`setupFocusTrap`), 스크린리더 알림(`announceToScreenReader`), 클릭 가능한 카드의 `tabIndex`
+- **큰 글씨·큰 터치 영역** (`src/styles/globalStyles.css` CSS 변수)
+  - 본문 20–24px, 작은 글씨 18px, 제목 32–36px, 줄 간격 1.6
+  - 최소 터치 영역 48px, 주요 버튼 높이 64px
+- **사용자 설정 대응**: `prefers-contrast: high`(본문을 검정으로), `prefers-reduced-motion: reduce`(애니메이션 최소화), `prefers-color-scheme: dark`
 
-6. **동적 송금 한도 설정** ⭐ NEW
-   - 기본 일일 송금 한도 설정
-   - 상대방 관계별 맞춤 한도 (자녀 vs 친척 등)
-   - 시간대별 한도 조정 (야간 거래 제한)
-   - 한도 초과 시 자동으로 보호자 승인 요청
+### 색상과 대비 (흰 배경 `#FFFFFF` 기준, WCAG 2.x 대비율)
 
-7. **독거노인 보호 설정** ⭐ NEW
-   - 긴급 연락처 등록 (주요 + 보조)
-   - 일일 안전 확인 (정해진 시간에 자동 전화/메시지)
-   - 주간 통계 리포트 자동 전송
-   - 의심 거래 감시 (기준액 설정)
-   - SMS, 전화, 가족 알림 옵션
+| 토큰 | 값 | 용도 | 대비율 | 기준 |
+|---|---|---|---|---|
+| `--color-trust` | `#003366` | 본문 텍스트 | 12.6 : 1 | AAA |
+| `--color-text-secondary` | `#616161` | 보조 텍스트 | 6.2 : 1 | AA |
+| `--color-success` | `#2E7D32` | 성공·확인 | 5.1 : 1 | AA |
+| `--color-error` | `#D32F2F` | 위험·경고 | 5.0 : 1 | AA |
+| `--color-action` | `#FFD700` | 주요 액션 버튼 배경 (네이비 글자와 9.0 : 1) | — | AAA |
+| `--color-ai` | `#FF9800` | AI 비서 버튼 배경 | 2.2 : 1 | **기준 미달** |
+
+AI 비서 버튼(`--color-ai` 계열)은 흰색과의 대비가 AA(4.5 : 1)에 못 미칩니다. 개선이 필요한 항목입니다.
 
 ## 기술 스택
 
-- **Framework**: React 18 + TypeScript
-- **Build Tool**: Vite
-- **UI Library**: Material Design 3 기반 커스텀 컴포넌트
-- **Styling**: CSS Modules + CSS Variables
-
-## 디자인 시스템
-
-### 색상 팔레트
-- **Primary**: #4A90E2 (Blue) - 대비율 7.2:1
-- **Success**: #50C878 (Green) - 대비율 7.5:1
-- **Warning**: #FF9500 (Orange) - 대비율 8.1:1
-- **Error**: #F44336 (Red) - 대비율 7.8:1
-
-### 타이포그래피
-- **Headings**: 28-32sp, Bold
-- **Body**: 18-20sp, Regular
-- **Line Height**: 1.5x
-- **Font Family**: 시스템 기본 폰트 + Noto Sans KR
-
-### 컴포넌트 사양
-- **최소 터치 영역**: 48dp x 48dp
-- **버튼 높이**: 64dp
-- **코너 반경**: 16dp
-- **기본 여백**: 24dp
-- **간격**: 16dp
+- React 18 + TypeScript 5
+- Vite 5
+- React Router 6
+- 컴포넌트별 일반 CSS 파일(BEM 스타일 클래스) + CSS 변수 — CSS Modules나 UI 라이브러리는 쓰지 않습니다.
 
 ## 프로젝트 구조
 
 ```
-senior-banking-app/
-├── src/
-│   ├── components/          # 재사용 가능한 컴포넌트
-│   │   ├── Button/
-│   │   ├── Card/
-│   │   ├── Text/
-│   │   ├── BalanceCard/
-│   │   ├── ActionButton/
-│   │   └── AIAssistant/
-│   ├── pages/               # 페이지 컴포넌트
-│   │   ├── Home/
-│   │   ├── Transfer/
-│   │   ├── FamilyManagement/        # ⭐ 가족 등록 관리
-│   │   ├── TransferLimit/           # ⭐ 송금 한도 설정
-│   │   ├── ElderlyProtection/       # ⭐ 독거노인 보호
-│   │   └── ...
-│   ├── hooks/               # 커스텀 훅
-│   │   └── useAccessibility.ts
-│   ├── utils/               # 유틸리티 함수
-│   │   └── accessibility.ts
-│   ├── styles/              # 전역 스타일
-│   │   ├── theme.ts
-│   │   └── globalStyles.css
-│   ├── types/               # TypeScript 타입 정의
-│   │   └── index.ts
-│   ├── App.tsx
-│   └── main.tsx
-├── index.html
-├── package.json
-├── tsconfig.json
-└── vite.config.ts
+src/
+├── components/   # Button, Card, Text, BalanceCard, ActionButton, AIAssistant
+├── pages/        # 라우트별 화면 14개
+├── hooks/        # useAccessibility.ts (useTTS, useHaptic)
+├── utils/        # accessibility.ts
+├── styles/       # globalStyles.css (디자인 토큰), theme.ts
+├── types/
+├── App.tsx       # 라우팅
+└── main.tsx
 ```
 
-## 설치 및 실행
+## 실행
 
-### 사전 요구사항
-- Node.js 18 이상
-- npm 또는 yarn
+Node.js 18 이상이 필요합니다. 저장소 루트에서 실행합니다.
 
-### 설치
 ```bash
-cd senior-banking-app
 npm install
-```
-
-### 개발 서버 실행
-```bash
-npm run dev
-```
-
-### 빌드
-```bash
-npm run build
-```
-
-### 프리뷰
-```bash
+npm run dev       # 개발 서버
+npm run build     # tsc + vite build
 npm run preview
 ```
-
-## 네비게이션 구조
-
-### 홈 화면 (/)
-- **돈 보내기** → `/transfer` (송금 금액 입력)
-- **사진 찍어 보내기** → `/camera` (카메라 실행)
-- **안심 계좌** → `/safe-accounts` (저장된 계좌 목록)
-- **설정 버튼** → `/settings` (설정 페이지)
-
-### 설정 페이지 (/settings)
-- **👨‍👩‍👧 가족 관리** → `/family-management`
-  - 보호자 등록 및 권한 설정
-  - 여러 보호자 관리 가능
-- **💰 송금 한도** → `/transfer-limit`
-  - 기본 한도 설정
-  - 관계별 한도 설정
-  - 시간대별 한도 설정
-- **👴 독거노인 보호** → `/elderly-protection`
-  - 긴급 연락처 등록
-  - 일일 안전 확인 설정
-  - 의심 거래 감시 설정
-
-### 송금 흐름
-1. 홈 화면에서 "돈 보내기" 또는 "사진 찍어 보내기"
-2. `/transfer` - 금액 입력
-3. `/security-check` - 보안 검사
-4. `/fraud-alert` - 사기 경고 (필요시)
-5. `/transfer-success` - 송금 완료
-
-## 접근성 체크리스트
-
-### 시각적 접근성
-- [x] WCAG AAA 대비율 준수 (7:1)
-- [x] 큰 글씨 크기 (최소 18sp)
-- [x] 명확한 시각적 피드백
-- [x] High Contrast 모드 지원
-- [x] 색상에만 의존하지 않는 디자인
-
-### 청각적 접근성
-- [x] TTS (Text-to-Speech) 지원
-- [x] 시각적 알림과 함께 제공되는 정보
-- [x] 자막/텍스트 대체 제공
-
-### 운동/조작 접근성
-- [x] 큰 터치 영역 (최소 48dp)
-- [x] 충분한 간격
-- [x] 햅틱 피드백
-- [x] 키보드 네비게이션 지원
-- [x] Reduced Motion 지원
-
-### 인지적 접근성
-- [x] 간단하고 명확한 언어
-- [x] 일관된 레이아웃
-- [x] 단계별 안내
-- [x] 명확한 에러 메시지
-- [x] 취소/되돌리기 기능
-
-## 컴포넌트 사용 예시
-
-### Button
-```tsx
-import { Button } from './components';
-
-<Button
-  variant="primary"
-  size="large"
-  fullWidth
-  onClick={handleClick}
-  ariaLabel="송금하기"
->
-  송금하기
-</Button>
-```
-
-### Card
-```tsx
-import { Card } from './components';
-
-<Card
-  variant="elevated"
-  padding="large"
-  clickable
-  onClick={handleClick}
->
-  카드 내용
-</Card>
-```
-
-### Text
-```tsx
-import { Text } from './components';
-
-<Text
-  variant="heading1"
-  weight="bold"
-  color="primary"
-  align="center"
->
-  제목
-</Text>
-```
-
-## 브라우저 지원
-
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
 
 ## 라이선스
 
 MIT License
-
-## 기여
-
-이 프로젝트는 시니어 사용자의 디지털 금융 접근성을 개선하기 위해 만들어졌습니다.
-버그 리포트, 기능 제안, PR을 환영합니다.
-
-## 문의
-
-프로젝트에 대한 질문이나 제안이 있으시면 이슈를 등록해주세요.
-
-## 주요 개선 사항 (v1.1.0)
-
-### 📱 가족 등록 유연화
-- **다양한 관계 유형** 지원: 자녀, 배우자, 부모, 형제자매, 손주, 친척, 요양보호사, 법정후견인
-- **세부 권한 설정**: 각 보호자별로 송금 승인, 한도 설정, 잔액 조회 등의 권한을 개별 관리
-- **유연한 보호자 추가/제거**: 상황에 따라 쉽게 보호자를 추가하거나 제거 가능
-
-### 💰 동적 송금 한도 관리
-- **기본 한도**: 일일 기본 송금 한도 설정
-- **관계별 한도**: 상대방과의 관계에 따라 다른 한도 (자녀는 높게, 친척은 낮게)
-- **시간대별 한도**: 야간(00-06시) 거래 제한으로 사기 방지
-- **기준액 초과 시 보호자 승인 요청 자동 발생**
-
-### 👴 독거노인 보호 강화
-- **긴급 연락처**: 주요 보호자 + 보조 보호자 등록
-- **정기적 확인 시스템**:
-  - 일일 안전 확인 (정해진 시간에 자동 전화/SMS)
-  - 주간 통계 리포트 (보호자에게 자동 전송)
-- **의심 거래 감시**: 기준액 설정으로 이상 거래 실시간 감시
-- **다중 알림 옵션**: SMS, 전화, 가족 알림 중 선택 가능
-
-### 🔐 강화된 보안
-- **생체인증 지원 준비**: 지문, 안면인식 옵션
-- **보호자 승인 프로세스**: 한도 초과 거래 시 자동으로 보호자 승인 요청
-- **거래 패턴 분석**: 평소와 다른 송금 패턴 자동 감지
