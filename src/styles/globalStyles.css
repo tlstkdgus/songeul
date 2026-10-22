@@ -23,8 +23,8 @@
   --color-success-light: #4CAF50;  /* 밝은 초록 */
   --color-error: #D32F2F;          /* Alert Red - 위험/경고 */
   --color-error-light: #F44336;    /* 밝은 빨강 */
-  --color-ai: #FF9800;             /* Soft Orange - AI 비서 */
-  --color-ai-dark: #F57C00;        /* AI 비서 어두운 색 */
+  --color-ai: #B45309;             /* Amber - AI 비서 (흰 글자 5.0:1, AA) */
+  --color-ai-dark: #92400E;        /* AI 비서 어두운 색 (흰 글자 7.1:1) */
 
   /* 기본 색상 매핑 */
   --color-primary: var(--color-action);
